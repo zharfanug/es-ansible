@@ -1,0 +1,24 @@
+# DONT USE SPACE BETWEEN COMMA!! these values will directly read by shell intepreter
+
+domain=acme.com
+ssh_port=22
+efk_ver=8.16.1
+kibana_fqdn="acme-siem.pss.net"
+fleet_fqdn="acme-siem-fleet.acme.com"
+
+lb_hostname=acme-siem-lb01,acme-siem-lb02
+lb_ip=192.168.1.11,192.168.1.12
+lb_vs_fqdn=acme-siem-lb.acme.com
+lb_vs_ip=192.168.1.13
+
+es_hostname=acme-siem-es01,acme-siem-es02,acme-siem-es03
+es_ip=192.168.1.14,192.168.1.15,192.168.1.16
+es_cluster="acme-siem-elastic"
+es_user=acme
+es_pw="" #b64
+
+kf_hostname=acme-siem-kf01,acme-siem-kf02
+kf_ip=192.168.1.17,192.168.1.18
+
+ea_hostname=acme-siem-ea01,acme-siem-ea02
+ea_ip=192.168.1.19,100.100.25.90
