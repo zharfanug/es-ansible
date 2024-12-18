@@ -56,6 +56,7 @@ check_file() {
 }
 
 prep_hosts_list() {
+  mkdir -p "${INV_DIR}group_vars/"
   cat > "$ALL_VAR" <<- EOF
 ---
 ansible_ssh_port: $ssh_port
