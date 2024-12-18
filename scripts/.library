@@ -76,7 +76,7 @@ make_hosts_list() {
     if [[ $i -lt 10 ]]; then
       node_id=$(printf "%02d" "$((i + 1))")
     fi
-    general_var="ansible_user=root ansible_host=${n} efk_ver=${efk_ver} kibana_fqdn=${kibana_fqdn} fleet_fqdn=${fleet_fqdn}"
+    general_var="ansible_user=root ansible_host=${n}.${domain} efk_ver=${efk_ver} kibana_fqdn=${kibana_fqdn} fleet_fqdn=${fleet_fqdn}"
     custom_var=""
     if [ "$1" == "lb" ]; then
       state="BACKUP"
