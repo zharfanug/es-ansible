@@ -19,7 +19,7 @@ To set up the stack, follow these steps:
 Ensure you have the required dependencies installed on your system:
 ```bash
 sudo apt update -y
-sudo apt install -y default-jdk ansible
+sudo apt install -y default-jdk ansible libarchive-zip-perl
 ```
 
 ### 2. Clone the Repository
