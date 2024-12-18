@@ -163,7 +163,7 @@
   ansible.builtin.pause:
     seconds: 10
 
-- name: Create System Agent Policy
+- name: Create Linux Policy
   ansible.builtin.shell: |
     curl -s -k -u elastic:{{ elastic_password }} -X POST \
       {{ kibana_url }}/api/fleet/agent_policies?sys_monitoring=true \
@@ -172,7 +172,7 @@
       --max-time 900 \
       --connect-timeout 60 \
       -d '{
-        "name": "SIEM Agent Policy",
+        "name": "Linux Policy",
         "description": "",
         "namespace": "default",
         "monitoring_enabled": [
