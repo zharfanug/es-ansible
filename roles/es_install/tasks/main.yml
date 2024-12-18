@@ -22,37 +22,37 @@
       register: es_installer
     - name: Copy es installer
       ansible.builtin.copy:
-        src: "../files/es-installer/elasticsearch-{{ elk_ver | default('8.16.1') }}-amd64.deb"
+        src: "../files/es-installer/elasticsearch-{{ efk_ver | default('8.16.1') }}-amd64.deb"
         dest: /opt/es-installer/elasticsearch-{{ efk_ver | default('8.16.1') }}-amd64.deb
         mode: '0644'
       when: not es_installer.stat.exists
       # noqa: no-relative-paths
     - name: Check if es installer hash exists
       ansible.builtin.stat:
-        path: /opt/es-installer/elasticsearch-{{ elk_ver | default('8.16.1') }}-amd64.deb.sha512
+        path: /opt/es-installer/elasticsearch-{{ efk_ver | default('8.16.1') }}-amd64.deb.sha512
       register: es_installer_hash
     - name: Copy es installer hash
       ansible.builtin.copy:
-        src: "../files/es-installer/elasticsearch-{{ elk_ver | default('8.16.1') }}-amd64.deb.sha512"
+        src: "../files/es-installer/elasticsearch-{{ efk_ver | default('8.16.1') }}-amd64.deb.sha512"
         dest: /opt/es-installer/elasticsearch-{{ efk_ver | default('8.16.1') }}-amd64.deb.sha512
         mode: '0644'
       when: not es_installer_hash.stat.exists
       # noqa: no-relative-paths
     - name: Compute SHA-512 checksum of the downloaded .deb file
       ansible.builtin.command:
-        cmd: "sha512sum /opt/es-installer/elasticsearch-{{ elk_ver | default('8.16.1') }}-amd64.deb"
+        cmd: "sha512sum /opt/es-installer/elasticsearch-{{ efk_ver | default('8.16.1') }}-amd64.deb"
       register: computed_checksum
       changed_when: false
     - name: Read the expected checksum from the .sha512 file
       ansible.builtin.slurp:
-        src: /opt/es-installer/elasticsearch-{{ elk_ver | default('8.16.1') }}-amd64.deb.sha512
+        src: /opt/es-installer/elasticsearch-{{ efk_ver | default('8.16.1') }}-amd64.deb.sha512
       register: expected_checksum_raw
     - name: Decode the expected checksum
       ansible.builtin.set_fact:
         expected_checksum: "{{ expected_checksum_raw['content'] | b64decode | regex_replace('\\s.*', '') }}"
     - name: Compare checksums and fail if they don't match
       ansible.builtin.debug:
-        msg: "Checksums of elasticsearch-{{ elk_ver | default('8.16.1') }}-amd64.deb match! File is valid."
+        msg: "Checksums of elasticsearch-{{ efk_ver | default('8.16.1') }}-amd64.deb match! File is valid."
       failed_when: computed_checksum.stdout.split()[0] != expected_checksum
     - name: Ensure /var/lib/elasticsearch exists
       ansible.builtin.file:
@@ -105,7 +105,7 @@
       when: es_dir.stat.exists
       changed_when: files_to_delete.matched > 0
     - name: Install Elasticsearch if not installed
-      ansible.builtin.command: dpkg -i /opt/es-installer/elasticsearch-{{ elk_ver | default('8.16.1') }}-amd64.deb
+      ansible.builtin.command: dpkg -i /opt/es-installer/elasticsearch-{{ efk_ver | default('8.16.1') }}-amd64.deb
       register: install_es_output
       changed_when: true
     # Change ownership of /var/lib/elasticsearch
