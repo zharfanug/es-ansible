@@ -3,7 +3,6 @@
 domain=acme.com
 ssh_port=22
 efk_ver=8.16.1
-interface_name="ens18" # for keepalived
 kibana_fqdn="acme-siem.pss.net"
 fleet_fqdn="acme-siem-fleet.acme.com"
 

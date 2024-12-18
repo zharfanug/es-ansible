@@ -83,7 +83,7 @@ make_hosts_list() {
       if [ "$node_id" == "01" ]; then
         state="MASTER"
       fi
-      custom_var="state=${state} interface_name=${interface_name} priority=$((100 - (i * 10))) kk=${keepalived_key} lb_vs_ip=${lb_vs_ip} lb_vs_fqdn=${lb_vs_fqdn}"
+      custom_var="state=${state} priority=$((100 - (i * 10))) kk=${keepalived_key} lb_vs_ip=${lb_vs_ip} lb_vs_fqdn=${lb_vs_fqdn}"
     elif [ "$1" == "es" ]; then
       host_string="p31=\"${cert_pass}\" es_cluster=${es_cluster}"
       if [ "$node_id" == "01" ]; then

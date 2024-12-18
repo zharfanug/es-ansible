@@ -5,7 +5,7 @@
     content: |
       vrrp_instance VI_1 {
         state {{ state }}
-        interface {{ interface_name }}
+        interface {{ ansible_facts.default_ipv4.interface }}
         virtual_router_id 51
         priority {{ priority }} # Higher value means higher priority
         advert_int 1 # Advertisement interval in seconds
